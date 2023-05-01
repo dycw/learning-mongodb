@@ -1,3 +1,3 @@
-# `template-generic`
+# `learning-mongodb`
 
-Template for generic repositories
+Learning `mongodb`
