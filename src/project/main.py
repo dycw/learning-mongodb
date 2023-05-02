@@ -4,7 +4,6 @@ from pymongo import MongoClient
 
 
 config = dotenv_values(".env")
-assert 0, config
 
 
 app = FastAPI()
