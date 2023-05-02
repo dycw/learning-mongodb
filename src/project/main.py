@@ -1,9 +1,21 @@
 from fastapi import FastAPI
+from dotenv import dotenv_values
+from pymongo import MongoClient
+
+
+config = dotenv_values(".env")
+assert 0, config
 
 
 app = FastAPI()
 
 
-@app.get("/")
-async def root() -> dict[str, str]:
-    return {"message": "Welcome to the PyMongo tutorial!"}
+@app.on_event("startup")
+def startup_db_client() -> None:
+    app.mongodb_client = MongoClient(config["ATLAS_URI"])
+    app.database = app.mongodb_client[config["DB_NAMe"]]
+
+
+@app.on_event("shutdown")
+async def root() -> None:
+    app.mongodb_client.close()
