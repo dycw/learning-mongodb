@@ -1,3 +1,4 @@
 fastapi[all]
+loguru
 pymongo[srv]
 python-dotenv
